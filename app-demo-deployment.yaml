@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations:
+    field.cattle.io/creatorId: u-rckhj
+    field.cattle.io/publicEndpoints: '[{"addresses":["10.91.120.69"],"port":30756,"protocol":"TCP","serviceName":"app-demo:app-demo-nodeport","allNodes":true}]'
+  creationTimestamp: "2023-10-02T06:30:57Z"
+  generation: 2
+  labels:
+    cattle.io/creator: norman
+    workload.user.cattle.io/workloadselector: statefulSet-app-demo-app-demo
+  name: app-demo
+  namespace: app-demo
+  resourceVersion: "339458470"
+  selfLink: /apis/apps/v1/namespaces/app-demo/statefulsets/app-demo
+  uid: 8b30ba9e-25bc-491d-be91-6ef2e87f584d
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: statefulSet-app-demo-app-demo
+  serviceName: app-demo
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2023-10-02T06:54:23Z"
+        field.cattle.io/ports: '[[{"containerPort":8080,"dnsName":"app-demo-nodeport","hostPort":0,"kind":"NodePort","name":"8080tcp01","protocol":"TCP","sourcePort":0}]]'
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: statefulSet-app-demo-app-demo
+    spec:
+      containers:
+      - image: 10195/app-demo:6
+        imagePullPolicy: Always
+        name: app-demo
+        ports:
+        - containerPort: 8080
+          name: 8080tcp01
+          protocol: TCP
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  updateStrategy:
+    type: RollingUpdate
+status:
+  collisionCount: 0
+  currentReplicas: 1
+  currentRevision: app-demo-5ff6f8954c
+  observedGeneration: 2
+  readyReplicas: 1
+  replicas: 1
+  updateRevision: app-demo-5ff6f8954c
+  updatedReplicas: 1
