@@ -23,4 +23,7 @@ spec:
         ports:
         - containerPort: 8080
           protocol: TCP
-        
+      controller:
+        env:
+        - name: ARGOCD_RECONCILIATION_TIMEOUT
+           value: 0s
