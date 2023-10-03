@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: app-demo
-  namespace: app-demo
+  name: appdemo
+  namespace: app-emo
   
 spec:
   podManagementPolicy: OrderedReady
