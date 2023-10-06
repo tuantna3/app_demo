@@ -18,7 +18,7 @@ spec:
         workload.user.cattle.io/workloadselector: statefulSet-app-demo-app-demo
     spec:
       containers:
-      - image: 10195/app-demo:6
+      - image: 10195/app-demo:8
         name: app-demo
         ports:
         - containerPort: 8080
