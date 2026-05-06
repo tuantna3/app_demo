@@ -1,0 +1,27 @@
+name: CloudThinker Webhook
+
+on:
+  push:
+    branches:
+      - main   # đổi branch nếu cần
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Call CloudThinker Webhook
+        run: |
+          curl -X POST "https://app.cloudthinker.io/api/v1/webhooks/webhook/wh_Aom1nYBcysJM9PwWln29qmGT6FlFWo3jvZ274ZekncA/trigger" \
+            -H "Content-Type: application/json" \
+            -H "X-Api-Key: ${{ secrets.CLOUDTHINKER_API_KEY }}" \
+            -d '{
+              "message": "Push detected",
+              "metadata": {
+                "repo": "${{ github.repository }}",
+                "branch": "${{ github.ref_name }}",
+                "commit": "${{ github.sha }}"
+              }
+            }'
